@@ -10,16 +10,18 @@ import dao.BoardDAO;
 public class BoardInsertCmd implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		response.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("name");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-
-		BoardDAO dao = new BoardDAO();
-
-		int insertCnt = dao.insert(title, content, name);
-
 		try {
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			
+			String name = request.getParameter("name");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+
+			BoardDAO dao = new BoardDAO();
+
+			int insertCnt = dao.insert(title, content, name);
+
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			if (insertCnt > 0) {

@@ -10,13 +10,13 @@
 <script language="JavaScript" src="board.js"></script>
 <style>
 table {
-	/* width: 100%; */
+	width: 100%;
 	border: 1px solid gray;
 }
 
-table td {
+/* table td {
 	border-bottom: 1px solid gray;
-}
+} */
 </style>
 <body>
 	<center>

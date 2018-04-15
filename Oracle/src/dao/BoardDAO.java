@@ -16,7 +16,7 @@ public class BoardDAO {
 	private String listSQL = "SELECT BID, BTITLE, BCONTENT, BNAME, BDATE, BHIT FROM BOARD ORDER BY BID ASC";
 	private String deleteSQL = "DELETE BOARD WHERE BID = ?";
 	private String contentViewSQL = "SELECT BID, BTITLE, BCONTENT, BNAME, BDATE, BHIT FROM BOARD WHERE BID = ?";
-	private String insertSQL = "INSERT INTO BOARD(BID, BTITLE, BCONTENT, BNAME) VALUES(?, ?, ?, ?)";
+	private String insertSQL = "INSERT INTO BOARD(BID, BTITLE, BCONTENT, BNAME) VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?)";
 
 	public BoardDAO() {
 		conn = db.getConnection();
@@ -105,11 +105,10 @@ public class BoardDAO {
 	public int insert(String title, String content, String name) {
 		int insertCnt = 0;
 		try {
-			ps = conn.prepareStatement(deleteSQL);
-			ps.setString(1, "64");
-			ps.setString(2, title);
-			ps.setString(3, content);
-			ps.setString(4, name);
+			ps = conn.prepareStatement(insertSQL);
+			ps.setString(1, title);
+			ps.setString(2, content);
+			ps.setString(3, name);
 
 			insertCnt = ps.executeUpdate();
 

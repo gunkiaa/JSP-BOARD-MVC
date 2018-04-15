@@ -25,7 +25,7 @@ table {
 				<tbody>
 					<tr>
 						<th>작성자</th>
-						<td><input name="name" placeholder="이름을 입력해주세요." type="text" style="width: 30%;" maxlength="5" />
+						<td><input name="name" placeholder="이름을 입력해주세요." type="text" style="width: 30%;" maxlength="6" />
 					</tr>
 					<tr>
 						<th>제목</th>

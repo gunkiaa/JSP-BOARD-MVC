@@ -67,7 +67,9 @@ table th {
 			</tr>
 		</thead>
 		<tbody>
+			<c:set var="check" value="0" />
 			<c:forEach items="${list}" var="dto">
+				<c:set var="check" value="${check + 1}" />
 				<tr>
 					<td>${dto.bId}</td>
 					<td><a href="contentView.do?idx=${dto.bId}">${dto.bTitle}</a></td>
@@ -77,6 +79,11 @@ table th {
 					<td><a href="delete.do?idx=${dto.bId}"><button>삭제</button></a></td>
 				</tr>
 			</c:forEach>
+			<c:if test="${check == 0}">
+				<tr>
+					<td colspan="6">게시글이 없습니다</td>
+				</tr>
+			</c:if>
 			<%-- 			<%
 				ArrayList<BoardDTO> list = (ArrayList<BoardDTO>) request.getAttribute("list");
 
