@@ -101,7 +101,7 @@ table th {
 		</tbody>
 	</table>
 	<div align="right">
-		<a href="#"><button>글쓰기</button></a>
+		<a href="writing.jsp"><button>글쓰기</button></a>
 	</div>
 </body>
 </html>

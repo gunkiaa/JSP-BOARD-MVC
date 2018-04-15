@@ -74,7 +74,11 @@ public class FrontController extends HttpServlet {
 			command = new BoardContentViewCmd();
 			command.execute(request, response);
 			viewPage = "contentView.jsp";
-		
+		}else if(com.equals("/writing.do")) {
+			System.out.println("writing.do 실행");
+			command = new BoardInsertCmd();
+			command.execute(request, response);
+			return;
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);

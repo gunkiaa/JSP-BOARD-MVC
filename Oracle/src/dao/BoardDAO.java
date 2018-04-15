@@ -13,9 +13,10 @@ public class BoardDAO {
 
 	private DBconnect db = db = new DBconnect();
 
-	private String listSQL = "SELECT BID, BTITLE, BCONTENT, BNAME, BDATE, BHIT FROM BOARD";
+	private String listSQL = "SELECT BID, BTITLE, BCONTENT, BNAME, BDATE, BHIT FROM BOARD ORDER BY BID ASC";
 	private String deleteSQL = "DELETE BOARD WHERE BID = ?";
 	private String contentViewSQL = "SELECT BID, BTITLE, BCONTENT, BNAME, BDATE, BHIT FROM BOARD WHERE BID = ?";
+	private String insertSQL = "INSERT INTO BOARD(BID, BTITLE, BCONTENT, BNAME) VALUES(?, ?, ?, ?)";
 
 	public BoardDAO() {
 		conn = db.getConnection();
@@ -81,7 +82,7 @@ public class BoardDAO {
 		BoardDTO dto = new BoardDTO();
 		try {
 			ps = conn.prepareStatement(contentViewSQL);
-			ps.setString(1, idx);
+			ps.setInt(1, Integer.parseInt(idx));
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				while (rs.next()) {
@@ -91,15 +92,41 @@ public class BoardDAO {
 					dto.setbName(rs.getString("bName"));
 					dto.setbDate(rs.getTimestamp("bDate"));
 					dto.setbHit(rs.getInt("bHit"));
-
-					System.out.println("bId =" + rs.getInt("bId"));
-					System.out.println("bTitle =" +rs.getString("bTitle"));
-					System.out.println("bContent =" +rs.getString("bContent"));
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			db.close(conn, ps, rs);
 		}
 		return dto;
+	}
+
+	public int insert(String title, String content, String name) {
+		int insertCnt = 0;
+		try {
+			ps = conn.prepareStatement(deleteSQL);
+			ps.setString(1, "64");
+			ps.setString(2, title);
+			ps.setString(3, content);
+			ps.setString(4, name);
+
+			insertCnt = ps.executeUpdate();
+
+			if (insertCnt > 0) {
+
+				conn.commit();
+
+			} else {
+
+				conn.rollback();
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.close(conn, ps);
+		}
+		return insertCnt;
 	}
 }
