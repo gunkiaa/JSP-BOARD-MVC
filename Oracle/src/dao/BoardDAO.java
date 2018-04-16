@@ -19,6 +19,7 @@ public class BoardDAO {
 	private String insertSQL = "INSERT INTO BOARD(BID, BTITLE, BCONTENT, BNAME) VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?)";
 	private String updateSQL = "UPDATE BOARD SET BTITLE = ?, BCONTENT = ? WHERE BID = ?";
 	private String selectSQL = "SELECT BTITLE, BCONTENT FROM BOARD WHERE BID = ?";
+	private String upHitSQL = "UPDATE BOARD SET BHIT = BHIT+1 WHERE BID = ?";
 
 	public BoardDAO() {
 		conn = db.getConnection();
@@ -63,15 +64,7 @@ public class BoardDAO {
 
 			deleteCnt = ps.executeUpdate();
 
-			if (deleteCnt > 0) {
-
-				conn.commit();
-
-			} else {
-
-				conn.rollback();
-
-			}
+			connCheck(deleteCnt);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -81,6 +74,7 @@ public class BoardDAO {
 	}
 
 	public BoardDTO contentView(String idx) {
+		upHit(idx);
 		BoardDTO dto = new BoardDTO();
 		try {
 			ps = conn.prepareStatement(contentViewSQL);
@@ -108,6 +102,19 @@ public class BoardDAO {
 		return dto;
 	}
 
+	public void upHit(String idx) {
+		try {
+			ps = conn.prepareStatement(upHitSQL);
+			ps.setString(1, idx);
+
+			int upHitCnt = ps.executeUpdate();
+
+			connCheck(upHitCnt);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public int insert(String title, String content, String name) {
 		int insertCnt = 0;
 		try {
@@ -118,15 +125,8 @@ public class BoardDAO {
 
 			insertCnt = ps.executeUpdate();
 
-			if (insertCnt > 0) {
+			connCheck(insertCnt);
 
-				conn.commit();
-
-			} else {
-
-				conn.rollback();
-
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -142,14 +142,11 @@ public class BoardDAO {
 			ps.setString(1, title);
 			ps.setString(2, content);
 			ps.setString(3, idx);
-			
+
 			updateCnt = ps.executeUpdate();
-			
-			if(updateCnt > 0) {
-				conn.commit();
-			}else {
-				conn.rollback();
-			}
+
+			connCheck(updateCnt);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -179,4 +176,15 @@ public class BoardDAO {
 		return dto;
 	}
 
+	public void connCheck(int cnt) {
+		try {
+			if (cnt > 0) {
+				conn.commit();
+			} else {
+				conn.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

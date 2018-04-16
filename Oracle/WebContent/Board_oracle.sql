@@ -1,11 +1,11 @@
 --------------------------------------------------------
---  파일이 생성됨 - 토요일-4월-14-2018   
+--  파일이 생성됨 - 월요일-4월-16-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence BOARD_SEQ
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SCOTT"."BOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SCOTT"."BOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BOARD
 --------------------------------------------------------
@@ -14,7 +14,7 @@
    (	"BID" NUMBER(4,0), 
 	"BTITLE" VARCHAR2(50 BYTE), 
 	"BCONTENT" VARCHAR2(300 BYTE), 
-	"BNAME" VARCHAR2(10 BYTE), 
+	"BNAME" VARCHAR2(20 BYTE), 
 	"BDATE" TIMESTAMP (6) DEFAULT sysdate, 
 	"BHIT" NUMBER(4,0) DEFAULT 0
    ) SEGMENT CREATION IMMEDIATE 
@@ -24,8 +24,8 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into SCOTT.BOARD
 SET DEFINE OFF;
-Insert into SCOTT.BOARD (BID,BTITLE,BCONTENT,BNAME,BDATE,BHIT) values (26,'안녕하세요','김건입니다','강정훈 ',to_timestamp('18/04/12 05:25:41.000000000','RR/MM/DD HH24:MI:SSXFF'),0);
-Insert into SCOTT.BOARD (BID,BTITLE,BCONTENT,BNAME,BDATE,BHIT) values (28,'안녕하세요','김건입니다','강정훈 ',to_timestamp('18/04/12 05:25:43.000000000','RR/MM/DD HH24:MI:SSXFF'),0);
+Insert into SCOTT.BOARD (BID,BTITLE,BCONTENT,BNAME,BDATE,BHIT) values (20,'안녕','김건입니다.','김건',to_timestamp('18/04/16 06:15:52.000000000','RR/MM/DD HH24:MI:SSXFF'),0);
+Insert into SCOTT.BOARD (BID,BTITLE,BCONTENT,BNAME,BDATE,BHIT) values (12,'바이','바이','김동엽',to_timestamp('18/04/15 23:48:28.000000000','RR/MM/DD HH24:MI:SSXFF'),1);
 --------------------------------------------------------
 --  Constraints for Table BOARD
 --------------------------------------------------------

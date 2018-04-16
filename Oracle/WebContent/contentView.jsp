@@ -54,6 +54,10 @@ table th {
 				<td id="nae">${contentView.bDateTime}</td>
 			</tr>
 			<tr>
+				<th>조회수</th>
+				<td id="nae">${contentView.bHit}</td>
+			</tr>
+			<tr>
 				<td id="title" colspan="2">${contentView.bTitle}</td>
 			</tr>
 			<tr>
@@ -61,8 +65,8 @@ table th {
 			</tr>
 		</table>
 		<div align="right">
-			<a href="modify.do?idx=${contentView.bId}"><button>수정</button></a> 
-			<a href="delete.do?idx=${contentView.bId}"><button>삭제</button></a>
+			<a href="modify.do?idx=${contentView.bId}"><button>수정</button></a> <a
+				href="delete.do?idx=${contentView.bId}"><button>삭제</button></a>
 		</div>
 	</center>
 </body>

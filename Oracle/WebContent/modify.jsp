@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="board.js"></script>
+<script src="board.js?ver1"></script>
 </head>
 <style>
 table {
@@ -40,7 +40,6 @@ input, textarea {
 				</tbody>
 			</table>
 			<input type="button" value="완료" onclick="modifyPro()" />
-			<input type="submit">
 		</center>
 	</form>
 </body>
