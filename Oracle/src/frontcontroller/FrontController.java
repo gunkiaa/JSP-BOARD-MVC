@@ -79,6 +79,16 @@ public class FrontController extends HttpServlet {
 			command = new BoardInsertCmd();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/modify.do")) {
+			System.out.println("modify.do 실행");
+			command = new BoardModifyCmd();
+			command.execute(request, response);
+			viewPage="modify.jsp";
+		}else if(com.equals("/modify_ok.do")) {
+			System.out.println("modify_ok.do 실행");
+			command = new BoardModifyOkCmd();
+			command.execute(request, response);
+			return;
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);

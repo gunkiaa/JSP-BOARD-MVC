@@ -48,12 +48,13 @@ public class BoardDTO {
 		return s;
 	}
 
-	public String getbDateTime() {
+	public String getbTime() {
 		String s = new SimpleDateFormat("HH:mm:ss").format(bDate);
 		return s;
 	}
-	public Timestamp getTimestamp() {
-		return bDate;
+	public String getbDateTime() {
+		String s = new SimpleDateFormat("yyyy/MM/dd/HH:mm:ss").format(bDate);
+		return s;
 	}
 	public void setbDate(Timestamp bDate) {
 		this.bDate = bDate;

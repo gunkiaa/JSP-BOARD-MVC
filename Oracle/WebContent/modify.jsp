@@ -13,47 +13,34 @@ table {
 	border: 1px solid gray;
 }
 
-table th {
-	font-size: 15pt;
-}
-
-input {
-	height: 20px;
-	font-size: 15pt;
-}
-
-textarea {
+input, textarea {
 	font-size: 15pt;
 }
 </style>
 <body>
-	<form name="wr_form" action="writing.do" method="post">
+	<form name="wr_form" action="modify_ok.do" method="post">
 		<center>
 			<table>
 				<thead>
 				<caption>
-					<h1>글쓰기</h1>
+					<h1>수정</h1>
 				</caption>
 				</thead>
 				<tbody>
 					<tr>
-						<th>작성자</th>
-						<td><input name="name" placeholder="이름을 입력해주세요." type="text"
-							style="width: 35%;" maxlength="6" />
+
+						<td><input nmae="idx" type="hidden" value="${modify.bId}" /><input
+							name="title" placeholder="제목을 입력해주세요." type="text"
+							style="width: 70%;" maxlength="16" value="${modify.bTitle}" />
 					</tr>
 					<tr>
-						<th>제목</th>
-						<td><input name="title" placeholder="제목을 입력해주세요." type="text"
-							style="width: 70%;" maxlength="16" />
-					</tr>
-					<tr>
-						<th>내용</th>
 						<td><textarea name="content" placeholder="내용을 입력해주세요."
-								style="width: 89%;" rows="20" maxlength="150"></textarea></td>
+								style="width: 89%;" rows="20" maxlength="150">${modify.bContent}</textarea></td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="button" value="완료" onclick="writingPro()" />
+			<input type="button" value="완료" onclick="modifyPro()" />
+			<input type="submit">
 		</center>
 	</form>
 </body>

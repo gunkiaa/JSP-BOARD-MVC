@@ -14,34 +14,56 @@ table {
 	border: 1px solid gray;
 }
 
-/* table td {
-	border-bottom: 1px solid gray;
-} */
+table td, th {
+	border: 1pt solid black;
+	text-align: center;
+}
+
+table th {
+	width: 50%;
+	background-color: gray;
+	color: white;
+}
+
+#nae {
+	background-color: #cecece
+}
+
+#title {
+	border: 3pt solid black;
+	height: 40px;
+}
+
+#content {
+	height: 300px;
+}
 </style>
 <body>
 	<center>
 		<table>
 			<tr>
 				<th>번호</th>
-				<td>${contentView.bId}</td>
+				<td id="nae">${contentView.bId}</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${contentView.bName}</td>
+				<td id="nae">${contentView.bName}</td>
 			</tr>
-<%-- 			<tr>
+			<tr>
 				<th>작성일</th>
-				<td>${contentView.bDate}</td>
-			</tr> --%>
-			<tr>
-				<th>제목</th>
-				<td>${contentView.bTitle}</td>
+				<td id="nae">${contentView.bDateTime}</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td>${contentView.bContent}</td>
+				<td id="title" colspan="2">${contentView.bTitle}</td>
+			</tr>
+			<tr>
+				<td id="content" colspan="2">${contentView.bContent}</td>
 			</tr>
 		</table>
+		<div align="right">
+			<a href="modify.do?idx=${contentView.bId}"><button>수정</button></a> 
+			<a href="delete.do?idx=${contentView.bId}"><button>삭제</button></a>
+		</div>
 	</center>
 </body>
 </html>
